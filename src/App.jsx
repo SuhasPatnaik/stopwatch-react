@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
   const [time, setTime] = useState(0);
@@ -21,38 +21,43 @@ function App() {
 
   return (
     <>
-      <h1>01-Stopwatch</h1>
-      <div>
-        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-      </div>
-      <div>
-        {!isRunning ? (
+      <div className="flex flex-col items-center justify-center py-8">
+        <h1 className="text-2xl font-semibold pb-2">01-Stopwatch</h1>
+        <div className="text-xl font-semibold">
+          <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+          <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+          <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+        </div>
+        <div className="w-1/3 max-w-sm flex flex-row justify-evenly py-4">
+          {!isRunning ? (
+            <button
+              className="border rounded-lg py-1 px-2"
+              onClick={() => {
+                setIsRunning(true);
+              }}
+            >
+              Start
+            </button>
+          ) : (
+            <button
+              className="border rounded-lg py-1 px-2"
+              onClick={() => {
+                setIsRunning(false);
+              }}
+            >
+              Stop
+            </button>
+          )}
           <button
+            className="border rounded-lg py-1 px-2"
             onClick={() => {
-              setIsRunning(true);
-            }}
-          >
-            Start
-          </button>
-        ) : (
-          <button
-            onClick={() => {
+              setTime(0);
               setIsRunning(false);
             }}
           >
-            Stop
+            Reset
           </button>
-        )}
-        <button
-          onClick={() => {
-            setTime(0);
-            setIsRunning(false);
-          }}
-        >
-          Reset
-        </button>
+        </div>
       </div>
     </>
   );
