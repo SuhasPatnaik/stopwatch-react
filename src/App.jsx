@@ -13,9 +13,6 @@ function App() {
         setTime((prevTime) => prevTime + 10); // Update every 10ms for more precision
       }, 10);
     }
-    /* else if (!isRunning && time !== 0) {
-      clearInterval(interval); // Stop updating time when paused
-    } */
     return () => clearInterval(interval); // Cleanup the interval when the component unmounts or when isRunning changes
   }, [isRunning]);
 
